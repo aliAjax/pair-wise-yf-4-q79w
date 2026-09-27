@@ -29,3 +29,20 @@ export interface SceneFormData {
   pedestrianStatus: PedestrianStatus
   note: string
 }
+
+/** 待处理区中一条同编号冲突：本地版本与对方版本并排保留，不互相覆盖 */
+export interface PendingConflict {
+  id: string
+  local: WindowScene
+  incoming: WindowScene
+  importedAt: string
+  /** 导入来源设备名，用于在待处理项中标注对方 */
+  fromDevice: string
+}
+
+/** 一条路线的统计信息，处理冲突后立即重算 */
+export interface RouteStat {
+  routeName: string
+  count: number
+  latestTimestamp: string | null
+}
